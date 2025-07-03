@@ -1,0 +1,24 @@
+---
+title: "Rapport de laboratoire 3"
+subtitle: "MTH8211"
+author:
+  - name: Ulrich Baron-Fournier, Petru Lepreanu
+    email: ulrich.baron-fournier@polymtl.ca, petru.lepreanu@polymtl.ca
+    affiliation:
+      - name: Polytechnique Montréal
+format:
+  pdf:
+    keep-tex: false
+    documentclass: article
+    include-in-header:
+      - text: |
+            \usepackage{xspace}
+            \usepackage[francais]{babel}
+    geometry:
+      - margin=1in
+    papersize: letter
+    colorlinks: true
+    urlcolor: blue
+engine: julia
+---
+# Phase 1
