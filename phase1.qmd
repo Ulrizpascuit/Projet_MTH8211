@@ -1,8 +1,8 @@
 ---
-title: "Rapport de laboratoire 3"
+title: "Projet phase 1"
 subtitle: "MTH8211"
 author:
-  - name: Ulrich Baron-Fournier, Petru Lepreanu
+  - name: Ulrich Baron-Fournier, Petru Iepreanu
     email: ulrich.baron-fournier@polymtl.ca, petru.lepreanu@polymtl.ca
     affiliation:
       - name: Polytechnique Montréal
@@ -22,3 +22,60 @@ format:
 engine: julia
 ---
 # Phase 1
+
+L'objectif du projet est d'implémenter l'algorithme LRSN pour résoudre un problème de moindres carrés. Cet algorithme sert pour les problèmes ayant une matrice de forme très rectangulaire, tel que m >> n ou m << n.
+
+L'algorithme LRSN lorsque m>>n est le suivant:
+1. Choisir un facteur de suréchantillonage \gamma > 1 et poser s=[\gamma n]
+2. Générer une matrice G de taille s x m ayant des éléments aléatoires indépendantes suivant une distribution normale.
+3. Calculer \tilde{A}=GA
+4. Calculer la SVD compacte de \tilde{A}=\tilde{U}\tilde{\Sigma}\~tildeV}^{T} oû U \in \mathbb{R}^{s \times r}, \quad \tilde{\Sigma} \in \mathbb{R}^{r \times r}, \quad \tilde{V} \in \mathbb{R}^{n \times r}, mais on a besoin que de \tilde{\Sigma} et \tilde{V}
+5. Calculer N= \tilde{V} \tilde{\Sigma}^{-1}
+6. Calculer la solution de norme minimale de \min_y \|ANy - b\|_2 avec une méthode itérative, ce qui donnera \hat{y}
+7. Le résultat est \hat{x} = N \hat{y}
+
+L'algorithme LRSN lorsque n>>m est le suivant:
+1. Choisir un facteur de suréchantillonage \gamma > 1 et poser s=[\gamma m]
+2. Générer une matrice G de taille n x s ayant des éléments aléatoires indépendantes suivant une distribution normale.
+3. Calculer \tilde{A}=AG
+4. Calculer la SVD compacte de \tilde{A}=\tilde{U}\tilde{\Sigma}\~tildeV}^{T} oû U \in \mathbb{R}^{s \times r}, \quad \tilde{\Sigma} \in \mathbb{R}^{r \times r}, \quad \tilde{V} \in \mathbb{R}^{n \times r}, mais on a besoin que de \tilde{\Sigma} et \tilde{V}
+5. Calculer M= \tilde{V} \tilde{\Sigma}^{-1}
+6. Calculer la solution de norme minimale de \min_x \|M^T Ax - M^T b\|_2 avec une méthode itérative
+7. Le résultat est \hat{x}
+
+Ainsi, l'objectif sera de coder ceci sur Julia pour une certaine matrice A donnée.
+
+La méthode itérative est la suivante:
+1. Avec A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m} et une tolérance \epsilon > 0, 
+2. Poser x = \mathbf{0}, v = \mathbf{0} et r=b
+3. \mathbf{for} k=0,1,...,\[
+\frac{\log \varepsilon - \log 2}{\log \sigma_U - \sigma_L} \cdot (\sigma_U + \sigma_L)
+\] \mathbf{do}
+4. \[
+\beta \leftarrow
+\begin{cases}
+0 & \text{if } k = 0, \\
+\frac{1}{2} \left( \frac{c}{d} \right)^2 & \text{if } k = 1, \\
+\left( \frac{\alpha c}{2} \right)^2 & \text{otherwise},
+\end{cases}
+\]
+
+\[
+\alpha \leftarrow
+\begin{cases}
+\frac{1}{d} & \text{if } k = 0, \\
+d - \frac{c^2}{2d} & \text{if } k = 1, \\
+\frac{1}{d - \frac{\alpha c^2}{4}} & \text{otherwise}.
+\end{cases}
+\]
+5. \[
+v \leftarrow \beta v + A^\top r,
+\]
+6. \[
+x \leftarrow x + \alpha v,
+\]
+7. \[
+r \leftarrow r - \alpha A v.
+\]
+8. \mathbf{end for}
+
