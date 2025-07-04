@@ -22,7 +22,9 @@ format:
 engine: julia
 ---
 
-# Remise 1  LSRN : Une méthode parallèle pour les systèmes linéaires fortement rectangulaires
+# Remise 1  LSRN : Une méthode parallèle pour les systèmes linéaires fortement rectangulaires 
+
+## Lien du Github: https://github.com/Ulrizpascuit/Projet_MTH8211.git
 
 ## Description de la problématique
 
