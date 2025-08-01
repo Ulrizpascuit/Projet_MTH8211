@@ -152,7 +152,7 @@ Encore aucun test a été fait pour les matrices creuses. Le but serait le même
 Dans l'article, pluisieurs solveurs ont été utilisés et comparé entre eux. Afin de simplifier le tout, la fonction LSQR de krylov a été choisi pour pouvoir faire la la distinction entre l'utilisation ou non du préconditionneur LSRN. Cependant, pour le rapport, final il serait intéressant de voir l'amélioration qu'apporte LSRN en terme d'itération et de temps de résolution sur d'autre solveur (LSMR par exemple). Cela pourrait aussi faire amener une discussion sur la robustesse des solveurs en fonction du conditionnement.
 
 ### Cas sous-déterminé
-LSRN a été adapté pour $m < n$ en appliquant la projection aléatoire sur $A^T$. Certains résultats préliminaires ont été produits avec 
+LSRN a été adapté pour $m < n$ en appliquant la projection aléatoire sur $A^T$. Certains résultats préliminaires ont été produits de manière similaire au cas sur-déterminé, mais il reste encore certains aspect à analyser. Les résultats devraient être présents dans le rapport final!
 
 ### Utilisation d'exemples test multiples 
 Afin d'avoir plus de flexibilité sur les problèmes fortement rectangulaires, des fonctions génératives de matrices ont été produites afin de couvrir les systèmes sur-déterminés et sous-déterminés. Cependant, pour le rapport final, nous essairons de trouver des problèmes de la littérature qui correspondent aux problèmes recherchés afin de voir si les gains de LSRN se voient autant sur des matrices moins randomisées.
